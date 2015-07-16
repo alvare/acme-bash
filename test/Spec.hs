@@ -8,3 +8,6 @@ main :: IO ()
 main = do
     print $$ (read $1 :: Int)
     print $0
+    print $3
+    print ($#)
+    print ($@)

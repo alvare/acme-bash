@@ -1,5 +1,7 @@
 module Acme.Bash
     ( ($)
+    , ($#)
+    , ($@)
     , ($$)
     ) where
 
@@ -14,6 +16,12 @@ import           Prelude hiding (($))
 ($) :: (String -> b) -> Int -> b
 f $ 0 = f (unsafePerformIO getProgName)
 f $ n = f (arArgs n)
+
+($#) :: Int
+($#) = unsafePerformIO $$ fmap length getArgs
+
+($@) :: [String]
+($@) = unsafePerformIO getArgs
 
 ($$) = (Prelude.$)
 infixr 0 $$

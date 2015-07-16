@@ -5,7 +5,7 @@ Bash positional parameters for easy and safe argument handling.
 
 ## Usage
 
-This package re-exports `$` as `$$` because it make more sense.
+This package re-exports `$` as `$$` just because it make more sense.
 
 ```haskell
 module Main where
@@ -13,16 +13,24 @@ module Main where
 import Acme.Bash
 import Prelude hiding (($))
 
+
 main :: IO ()
 main = do
-    print $$ (read $2 :: Int)
+    print $$ (read $1 :: Int)
     print $0
-
+    print $3
+    print ($#)
+    print ($@)
 ```
 
-Then run `myProgram some 56` and it should output:
+Then run `my_program 23 some 46 lala` and it should output:
 
 ```
-56
-"myProgram"
+23
+"my_program"
+"46"
+4
+["23","some","46","lala"]
 ```
+
+Enjoy.
